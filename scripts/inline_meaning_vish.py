@@ -1,0 +1,7 @@
+old_clipped_value = clipboard.get_clipboard()
+clipboard.fill_clipboard("+++(=)+++")
+keyboard.send_keys("<ctrl>+v")
+time.sleep(0.1)
+clipboard.fill_clipboard(old_clipped_value)
+clipboard.fill_selection("")
+keyboard.send_keys("<left><left><left><left>")
