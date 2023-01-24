@@ -3,10 +3,10 @@ import regex
 text = clipboard.get_selection()
 text_out = None
 if len(text) > 0:
-  if regex.fullmatch("\d+", text):
+  if regex.fullmatch("[\d-]+", text):
     # Markdown footnote
     text_out = f"[^{text}]"
-  elif regex.fullmatch("\d+[\.:]", text):
+  elif regex.fullmatch("[\d-]+[\.:]", text):
     # Markdown footnote
     text_out = f"[^{text[:-1]}]:"
   else:
