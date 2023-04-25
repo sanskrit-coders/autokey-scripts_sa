@@ -8,7 +8,7 @@ def send_text_via_clipboard(text):
 
 from indic_transliteration import detect, sanscript
 text = clipboard.get_selection()
-time.sleep(0.1)
+time.sleep(0.2)
 # dialog.info_dialog(title="Information", message=text)
 if len(text) == 0:
   send_text_via_clipboard("-")
