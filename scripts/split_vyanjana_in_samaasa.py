@@ -17,7 +17,11 @@ if len(text) == 0:
 if len(text) > 0:
   script = detect.detect(text)
   scheme = sanscript.SCHEMES[script]
-  if hasattr(scheme, "split_vyanjanas_and_svaras"):
+  if " " in text or '-' in text:
+    if hasattr(scheme, "join_post_viraama"):
+      text_out = scheme.join_post_viraama(text)
+
+  elif hasattr(scheme, "split_vyanjanas_and_svaras"):
       final_svara = scheme.split_vyanjanas_and_svaras(text)[-1]
       if len(text) > 1:
         text_out = text[:-1] + scheme["virama"]["्"] + "-" + final_svara
