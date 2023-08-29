@@ -1,6 +1,9 @@
 from indic_transliteration import detect, sanscript
 import regex
-text = clipboard.get_selection()
+try:
+  text = clipboard.get_selection()
+except:
+  text = ""
 text_out = None
 if len(text) > 0:
   if regex.fullmatch("[\d-]+", text):
