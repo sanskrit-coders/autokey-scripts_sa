@@ -9,13 +9,14 @@ def send_text_via_clipboard(text):
   time.sleep(0.2)
   clipboard.fill_clipboard(old_clipped_value)
 
+from importlib.metadata import version
 from indic_transliteration import detect, sanscript
 try:
   text = clipboard.get_selection()
 except:
   text = ""
 # time.sleep(0.2)
-# dialog.info_dialog(title="Information", message=text)
+# dialog.info_dialog(title="Information", message=version("indic_transliteration"))
 if len(text) == 0:
   send_text_via_clipboard("-")
 
@@ -28,13 +29,13 @@ if len(text) > 0:
       text_out = scheme.join_post_viraama(text)
 
   elif hasattr(scheme, "split_vyanjanas_and_svaras"):
-      final_svara = scheme.split_vyanjanas_and_svaras(text)[-1]
-      if len(text) > 1:
-        text_out = text[:-1] + scheme["virama"]["्"] + "-" + final_svara
-      elif len(text) == 1:
-        text_out = text + scheme["virama"]["्"] + "-" + final_svara
-      # dialog.info_dialog(title="Information", message=text_out)
-      send_text_via_clipboard(text_out)
+    final_svara = scheme.split_vyanjanas_and_svaras(text)[-1]
+    if len(text) > 1:
+      text_out = text[:-1] + scheme["virama"]["्"] + "-" + final_svara
+    elif len(text) == 1:
+      text_out = text + scheme["virama"]["्"] + "-" + final_svara
+    # dialog.info_dialog(title="Information", message=",".join(scheme.split_vyanjanas_and_svaras(text)))
+    send_text_via_clipboard(text_out)
       
 time.sleep(0.2)
 clipboard.fill_selection("")
