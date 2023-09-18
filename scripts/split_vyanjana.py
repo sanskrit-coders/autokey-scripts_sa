@@ -1,3 +1,14 @@
+def send_text_via_clipboard(text):
+  try:
+    old_clipped_value = clipboard.get_clipboard()
+  except:
+    old_clipped_value = ""   
+  clipboard.fill_clipboard(text)
+  keyboard.send_keys("<ctrl>+v")
+  # dialog.info_dialog(title="Information", message=text)
+  time.sleep(0.2)
+  clipboard.fill_clipboard(old_clipped_value)
+
 from indic_transliteration import detect, sanscript
 import regex
 try:
@@ -28,9 +39,6 @@ if len(text) > 0:
           # dialog.info_dialog(title="Information", message=text_out)
 
 if text_out is not None:
-  old_clipped_value = clipboard.get_clipboard()
-  clipboard.fill_clipboard(text_out)
-  keyboard.send_keys("<ctrl>+v")
-  time.sleep(0.1)
-  clipboard.fill_clipboard(old_clipped_value)
+  send_text_via_clipboard(text_out)
+
 clipboard.fill_selection("")
