@@ -11,6 +11,7 @@ def send_text_via_clipboard(text):
 
 from indic_transliteration import detect, sanscript
 import regex
+time.sleep(0.1)
 try:
   text = clipboard.get_selection()
 except:
