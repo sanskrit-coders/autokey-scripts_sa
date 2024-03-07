@@ -30,12 +30,12 @@ if len(text) > 0:
       text_out = scheme.join_post_viraama(text)
 
   elif hasattr(scheme, "split_vyanjanas_and_svaras"):
-    final_svara = scheme.split_vyanjanas_and_svaras(text)[-1]
+    letters = scheme.split_vyanjanas_and_svaras(text)
+    # dialog.info_dialog(title="Information", message=",".join(letters))
     if len(text) > 1:
-      text_out = text[:-1] + scheme["virama"]["्"] + "-" + final_svara
+      text_out = scheme.join_strings(letters[:-1]) + "-" + letters[-1]
     elif len(text) == 1:
-      text_out = text + scheme["virama"]["्"] + "-" + final_svara
-    # dialog.info_dialog(title="Information", message=",".join(scheme.split_vyanjanas_and_svaras(text)))
+      text_out = text + scheme["virama"]["्"] + "-" + letters[-1]
     send_text_via_clipboard(text_out)
       
 time.sleep(0.2)
