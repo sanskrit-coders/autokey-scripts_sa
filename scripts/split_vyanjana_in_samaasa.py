@@ -31,7 +31,7 @@ if len(text) > 0:
 
   elif hasattr(scheme, "split_vyanjanas_and_svaras"):
     letters = scheme.split_vyanjanas_and_svaras(text)
-    # dialog.info_dialog(title="Information", message=",".join(letters))
+    dialog.info_dialog(title="Information", message=",".join(letters))
     if len(text) > 1:
       text_out = scheme.join_strings(letters[:-1]) + "-" + letters[-1]
     elif len(text) == 1:
