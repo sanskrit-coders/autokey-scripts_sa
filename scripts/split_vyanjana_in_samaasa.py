@@ -5,6 +5,7 @@ def send_text_via_clipboard(text):
     old_clipped_value = ""   
   clipboard.fill_clipboard(text)
   keyboard.send_keys("<ctrl>+v")
+  logger.info("Output - " + text)
   # dialog.info_dialog(title="Information", message=text)
   time.sleep(0.2)
   clipboard.fill_clipboard(old_clipped_value)
@@ -16,6 +17,7 @@ try:
   text = clipboard.get_selection()
 except:
   text = ""
+logger.info(text)
 # time.sleep(0.2)
 # dialog.info_dialog(title="Information", message=version("indic_transliteration"))
 if len(text) == 0:
@@ -31,7 +33,7 @@ if len(text) > 0:
 
   elif hasattr(scheme, "split_vyanjanas_and_svaras"):
     letters = scheme.split_vyanjanas_and_svaras(text)
-    dialog.info_dialog(title="Information", message=",".join(letters))
+    # dialog.info_dialog(title="Information", message=",".join(letters))
     if len(text) > 1:
       text_out = scheme.join_strings(letters[:-1]) + "-" + letters[-1]
     elif len(text) == 1:
