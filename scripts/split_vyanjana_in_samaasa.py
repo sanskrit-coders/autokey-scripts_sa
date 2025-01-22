@@ -29,6 +29,7 @@ if len(text) > 0:
   scheme = sanscript.SCHEMES[script]
   if " " in text or '-' in text:
     if hasattr(scheme, "join_post_viraama"):
+      text = text.replace("*", "")
       text_out = scheme.join_post_viraama(text)
 
   elif hasattr(scheme, "split_vyanjanas_and_svaras"):
